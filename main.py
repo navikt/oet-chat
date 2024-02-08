@@ -110,6 +110,7 @@ def clear_input(n_clicks, n_submit):
     [State("user-input", "value"), State("store-conversation", "data")],
 )
 def run_chatbot(n_clicks, n_submit, user_input, chat_history):
+    print(user_input)
     if n_clicks == 0 and n_submit is None:
         return "", None
 
@@ -134,6 +135,7 @@ def run_chatbot(n_clicks, n_submit, user_input, chat_history):
         måte, la oss finne ut av hva det er du lurer på. Kan du gjenta hva du lurer på? """
     else:
         model_output = chat_med_endpoint(user_input, api_key, url, navn_på_endepunkt)
+        print(model_output)
     chat_history += f"{model_output}<split>"
 
     return chat_history, None
