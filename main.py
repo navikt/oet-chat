@@ -6,9 +6,11 @@ import dash_bootstrap_components as dbc
 from textwrap import dedent
 from ml_ot_bot import chat_med_endpoint
 
-api_key = os.environ["key"]
-url = os.environ["URL_ENDEPUNKT"]
-navn_på_endepunkt = os.environ["NAVN_ENDEPUNKT"]
+api_key = 'W53UMisVecwVl8TkY4GwB1Ki15Wrmn8F'#os.environ["key"]
+url = 'https://ot-ml-kategorisering-iterasjon1.swedencentral.inference.ml.azure.com/score'
+#url = os.environ["URL_ENDEPUNKT"]
+
+navn_på_endepunkt = 'ot-ml-kategorisering-iterasjon1'#os.environ["NAVN_ENDEPUNKT"]
 
 
 
@@ -101,7 +103,7 @@ def update_display(chat_history):
     [Input("submit", "n_clicks"), Input("user-input", "n_submit")],
 )
 def clear_input(n_clicks, n_submit):
-    return ""
+    return "Hei på deg"
 
 @app.callback(
     [Output("store-conversation", "data"), Output("loading-component", "children")],
