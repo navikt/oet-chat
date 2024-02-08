@@ -42,6 +42,3 @@ def chat_med_endpoint(question: str, api_key: str, url, navn_på_endepunkt):
         print(error.info())
         print(error.read().decode("utf8", 'ignore'))
         return ""
-
-
-print(chat_med_endpoint("Hei, hva er lønn?"))
