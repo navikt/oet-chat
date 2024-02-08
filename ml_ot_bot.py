@@ -2,6 +2,7 @@ import urllib.request
 import json
 import os
 import ssl
+import logging
 
 
 def allowSelfSignedHttps(allowed):
@@ -10,7 +11,8 @@ def allowSelfSignedHttps(allowed):
         ssl._create_default_https_context = ssl._create_unverified_context
 
 
-
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
 def chat_med_endpoint(question: str, api_key: str, url, navn_på_endepunkt):
@@ -37,7 +39,7 @@ def chat_med_endpoint(question: str, api_key: str, url, navn_på_endepunkt):
         return result["chat_output"]
     except urllib.error.HTTPError as error:
         print("The request failed with status code: " + str(error.code))
-
+        logger.info("The request failed with status code: " + str(error.code))
         # Print the headers - they include the requert ID and the timestamp, which are useful for debugging the failure
         print(error.info())
         print(error.read().decode("utf8", 'ignore'))
