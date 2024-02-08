@@ -6,6 +6,7 @@ import dash_bootstrap_components as dbc
 from textwrap import dedent
 from ml_ot_bot import chat_med_endpoint
 
+
 api_key = os.environ["api_key"]
 #url = 'https://ot-ml-kategorisering-iterasjon1.swedencentral.inference.ml.azure.com/score'
 url = os.environ["URL_ENDEPUNKT"]
@@ -104,7 +105,8 @@ def update_display(chat_history):
     [Input("submit", "n_clicks"), Input("user-input", "n_submit")],
 )
 def clear_input(n_clicks, n_submit):
-    return "Hei på deg"
+    print(f"n_clicks: {n_clicks} n submit: {n_submit}")
+    return ""
 
 @app.callback(
     [Output("store-conversation", "data"), Output("loading-component", "children")],
