@@ -11,9 +11,9 @@ spec:
     - secret: api-key-azure-endepunkt
   env:
     - name: URL_ENDEPUNKT
-      value: 'https://ot-ml-kategorisering-iterasjon1.swedencentral.inference.ml.azure.com/score'
+      value: https://ot-ml-kategorisering-iterasjon1.swedencentral.inference.ml.azure.com/score
     - name: NAVN_ENDEPUNKT
-      value: 'ot-ml-kategorisering-iterasjon1'
+      value: ot-ml-kategorisering-iterasjon1
   image: "{{ image }}"
   port: 8050
   replicas:

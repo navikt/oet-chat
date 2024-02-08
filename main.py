@@ -1,9 +1,16 @@
+import os
 import time
 
 from dash import Dash, html, dcc, Output, Input, State
 import dash_bootstrap_components as dbc
 from textwrap import dedent
 from ml_ot_bot import chat_med_endpoint
+
+api_key = os.environ["api-key-azure-endepunkt"]["key"]
+print(len(api_key))
+url = os.environ["URL_ENDEPUNKT"]
+navn_på_endepunkt = os.environ["NAVN_ENDEPUNKT"]
+
 
 
 def Header(name, app):
@@ -126,7 +133,7 @@ def run_chatbot(n_clicks, n_submit, user_input, chat_history):
         Hei, du snakker med et menneske, jeg heter Claude. Jeg er et skikkelig bra menneske og kan hjelpe deg på en bra
         måte, la oss finne ut av hva det er du lurer på. Kan du gjenta hva du lurer på? """
     else:
-        model_output = chat_med_endpoint(user_input + " , use emojis and be charming!")
+        model_output = chat_med_endpoint(user_input, api_key, url, navn_på_endepunkt)
     chat_history += f"{model_output}<split>"
 
     return chat_history, None

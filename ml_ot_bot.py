@@ -10,12 +10,10 @@ def allowSelfSignedHttps(allowed):
         ssl._create_default_https_context = ssl._create_unverified_context
 
 
-api_key = os.environ["api-key-azure-endepunkt"]["key"]
-url = os.environ["URL_ENDEPUNKT"]
-navn_på_endepunkt = os.environ["NAVN_ENDEPUNKT"]
 
 
-def chat_med_endpoint(question):
+
+def chat_med_endpoint(question: str, api_key: str, url, navn_på_endepunkt):
     allowSelfSignedHttps(True)
     data = {'chat_input': question, 'chat_history': []}
 
