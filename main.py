@@ -108,6 +108,7 @@ def update_display(chat_history):
     [Input("submit", "n_clicks"), Input("user-input", "n_submit")],
 )
 def clear_input(n_clicks, n_submit):
+    time.sleep(1)
     logger.info(f"n_clicks: {n_clicks} n submit: {n_submit}")
     return ""
 
@@ -141,7 +142,14 @@ def run_chatbot(n_clicks, n_submit, user_input, chat_history):
         model_output = """
         Hei, du snakker med et menneske, jeg heter Claude. Jeg er et skikkelig bra menneske og kan hjelpe deg på en bra
         måte, la oss finne ut av hva det er du lurer på. Kan du gjenta hva du lurer på? """
+    elif "fridtjof" in user_input:
+        time.sleep(3)
+        model_output = "Fridtjof er en kul fyr, han er en av de beste jeg vet om. Han er en skikkelig kul fyr"
+    elif "wilhelm" in user_input:
+        time.sleep(2)
+        model_output = "Wilhelm er .... hva skal jeg si, han er en skikkelig kul fyr"
     else:
+        logger.info("Nå svarer oatmeal ....")
         model_output = chat_med_endpoint(user_input, api_key, url, navn_på_endepunkt)
         logger.info(f"Model output {model_output}")
     chat_history += f"{model_output}<split>"
