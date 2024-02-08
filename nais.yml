@@ -8,7 +8,7 @@ metadata:
 
 spec:
   envFrom:
-    - secret: api-key-azure-endepunkt
+    - secret: api-key-azure-endepunkt2
   env:
     - name: URL_ENDEPUNKT
       value: https://ot-ml-kategorisering-iterasjon1.swedencentral.inference.ml.azure.com/score
