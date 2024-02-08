@@ -1,5 +1,6 @@
 import os
 import time
+import logging
 
 from dash import Dash, html, dcc, Output, Input, State
 import dash_bootstrap_components as dbc
@@ -14,6 +15,8 @@ url = os.environ["URL_ENDEPUNKT"]
 #navn_på_endepunkt = 'ot-ml-kategorisering-iterasjon1'
 navn_på_endepunkt = os.environ["NAVN_ENDEPUNKT"]
 
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
 def Header(name, app):
@@ -105,8 +108,8 @@ def update_display(chat_history):
     [Input("submit", "n_clicks"), Input("user-input", "n_submit")],
 )
 def clear_input(n_clicks, n_submit):
-    print(f"n_clicks: {n_clicks} n submit: {n_submit}")
-    return ""
+    logger.info(f"n_clicks: {n_clicks} n submit: {n_submit}")
+    return "Hei"
 
 @app.callback(
     [Output("store-conversation", "data"), Output("loading-component", "children")],
@@ -114,7 +117,6 @@ def clear_input(n_clicks, n_submit):
     [State("user-input", "value"), State("store-conversation", "data")],
 )
 def run_chatbot(n_clicks, n_submit, user_input, chat_history):
-    print(n_submit)
     if n_clicks == 0 and n_submit is None:
         print("Heiehie")
         return "", None
