@@ -7,7 +7,6 @@ from textwrap import dedent
 from ml_ot_bot import chat_med_endpoint
 
 api_key = os.environ["key"]
-print(len(api_key))
 url = os.environ["URL_ENDEPUNKT"]
 navn_på_endepunkt = os.environ["NAVN_ENDEPUNKT"]
 
