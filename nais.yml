@@ -30,6 +30,6 @@ spec:
     outbound:
       external:
         - host: data.nav.no
-        - host: swedencentral.inference.ml.azure.com
+        - host: ot-ml-kategorisering-iterasjon1.swedencentral.inference.ml.azure.com
   ingresses:
     - "https://havregrotten.intern.nav.no"
