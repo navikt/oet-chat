@@ -1,0 +1,37 @@
+kind: "Application"
+apiVersion: "nais.io/v1alpha1"
+metadata:
+  annotations:
+    snorlax.nais.io/enabled: "true"
+  name: regelvekter-og-volum-dash
+  namespace: chatbot-havregrotten
+  labels:
+    team: sprakteknologi
+
+spec:
+  envFrom:
+    - secret: api-key-azure-endepunkt
+  env:
+    - name: URL_ENDEPUNKT
+      value: 'https://ot-ml-kategorisering-iterasjon1.swedencentral.inference.ml.azure.com/score'
+    - name: NAVN_ENDEPUNKT
+      value: 'ot-ml-kategorisering-iterasjon1'
+  image: "{{ image }}"
+  port: 8050
+  replicas:
+    min: 1
+    max: 2
+  resources:
+    requests:
+      cpu: 300m
+      memory: 1024Mi
+    limits:
+      cpu: 400m
+      memory: 2048Mi
+  accessPolicy:
+    outbound:
+      external:
+        - host: data.nav.no
+        - host: ml.azure.com
+  ingresses:
+    - "https://havregrotten.prod.intern.nav.no"
