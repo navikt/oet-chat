@@ -1,8 +1,6 @@
 kind: "Application"
 apiVersion: "nais.io/v1alpha1"
 metadata:
-  annotations:
-    snorlax.nais.io/enabled: "true"
   name: chatbot-havregrotten
   namespace: sprakteknologi
   labels:
