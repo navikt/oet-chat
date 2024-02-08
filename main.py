@@ -88,7 +88,7 @@ app.layout = dbc.Container(
     children=[
         Header("OT-ML", app),
         html.Hr(),
-        dcc.Store(id="store-conversation", data=""),
+        dcc.Store(id="store-conversation", data="Velkommen til OT-ML! Hvordan kan jeg hjelpe deg?"),
         conversation,
         controls,
         dbc.Spinner(html.Div(id="loading-component")),
