@@ -29,12 +29,14 @@ def chat_med_endpoint(question: str, api_key: str, url, navn_på_endepunkt):
     # Remove this header to have the request observe the endpoint traffic rules
     headers = {'Content-Type': 'application/json', 'Authorization': ('Bearer ' + api_key),
                'azureml-model-deployment': navn_på_endepunkt}
+    logger.info(navn_på_endepunkt)
+    logger.info(len(api_key))
 
     req = urllib.request.Request(url, body, headers)
 
     try:
         response = urllib.request.urlopen(req)
-
+        logger.info("heihei, her er responsen")
         result = json.loads(response.read().decode("utf-8"))
         return result["chat_output"]
     except urllib.error.HTTPError as error:
