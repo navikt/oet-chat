@@ -9,11 +9,11 @@ from ml_ot_bot import chat_med_endpoint
 
 
 api_key = os.environ["api_key"]
-#url = 'https://ot-ml-kategorisering-iterasjon1.swedencentral.inference.ml.azure.com/score'
-url = os.environ["URL_ENDEPUNKT"]
+url = 'https://ot-ml-kategorisering-iterasjon1.swedencentral.inference.ml.azure.com/score'
+#url = os.environ["URL_ENDEPUNKT"]
 
-#navn_på_endepunkt = 'ot-ml-kategorisering-iterasjon1'
-navn_på_endepunkt = os.environ["NAVN_ENDEPUNKT"]
+navn_på_endepunkt = 'ot-ml-kategorisering-iterasjon1'
+#navn_på_endepunkt = os.environ["NAVN_ENDEPUNKT"]
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -109,7 +109,7 @@ def update_display(chat_history):
 )
 def clear_input(n_clicks, n_submit):
     logger.info(f"n_clicks: {n_clicks} n submit: {n_submit}")
-    return "Hei"
+    return ""
 
 @app.callback(
     [Output("store-conversation", "data"), Output("loading-component", "children")],
@@ -118,12 +118,13 @@ def clear_input(n_clicks, n_submit):
 )
 def run_chatbot(n_clicks, n_submit, user_input, chat_history):
     if n_clicks == 0 and n_submit is None:
-        print("Heiehie")
+        logger.info("Heiehie")
         return "", None
 
     if user_input is None or user_input == "":
         return chat_history, None
 
+    logger.info(f"User input: {user_input}")
     name = ""
 
     prompt = dedent(
@@ -142,7 +143,7 @@ def run_chatbot(n_clicks, n_submit, user_input, chat_history):
         måte, la oss finne ut av hva det er du lurer på. Kan du gjenta hva du lurer på? """
     else:
         model_output = chat_med_endpoint(user_input, api_key, url, navn_på_endepunkt)
-        print(model_output)
+        logger.info(f"Model output {model_output}")
     chat_history += f"{model_output}<split>"
 
     return chat_history, None
