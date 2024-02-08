@@ -43,4 +43,4 @@ def chat_med_endpoint(question: str, api_key: str, url, navn_på_endepunkt):
         # Print the headers - they include the requert ID and the timestamp, which are useful for debugging the failure
         print(error.info())
         print(error.read().decode("utf8", 'ignore'))
-        return ""
+        return "Det funka ikke"
