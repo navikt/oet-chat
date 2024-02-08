@@ -39,8 +39,9 @@ def chat_med_endpoint(question: str, api_key: str, url, navn_på_endepunkt):
         logger.info("heihei, her er responsen")
         result = json.loads(response.read().decode("utf-8"))
         return result["chat_output"]
-    except:
+    except Exception as error:
         print("The request failed with status code: " )
+        logger.info(f"{error}")
         logger.info("The request failed with status code: ")
         # Print the headers - they include the requert ID and the timestamp, which are useful for debugging the failure
         return "Det funka ikke"
