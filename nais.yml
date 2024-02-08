@@ -3,8 +3,8 @@ apiVersion: "nais.io/v1alpha1"
 metadata:
   annotations:
     snorlax.nais.io/enabled: "true"
-  name: regelvekter-og-volum-dash
-  namespace: chatbot-havregrotten
+  name: chatbot-havregrotten
+  namespace: sprakteknologi
   labels:
     team: sprakteknologi
 
