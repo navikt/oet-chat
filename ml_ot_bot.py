@@ -20,7 +20,6 @@ def chat_med_endpoint(question: str, api_key: str, url, navn_på_endepunkt):
     data = {'chat_input': question, 'chat_history': []}
 
     body = str.encode(json.dumps(data))
-    logger.info("nå er vi inne i funksjonen")
     # Replace this with the primary/secondary key or AMLToken for the endpoint
     if not api_key:
         raise Exception("A key should be provided to invoke the endpoint")
@@ -29,14 +28,11 @@ def chat_med_endpoint(question: str, api_key: str, url, navn_på_endepunkt):
     # Remove this header to have the request observe the endpoint traffic rules
     headers = {'Content-Type': 'application/json', 'Authorization': ('Bearer ' + api_key),
                'azureml-model-deployment': navn_på_endepunkt}
-    logger.info(navn_på_endepunkt)
-    logger.info(len(api_key))
 
     req = urllib.request.Request(url, body, headers)
 
     try:
         response = urllib.request.urlopen(req)
-        logger.info("heihei, her er responsen")
         result = json.loads(response.read().decode("utf-8"))
         return result["chat_output"]
     except Exception as error:

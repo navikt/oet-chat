@@ -109,7 +109,6 @@ def update_display(chat_history):
 )
 def clear_input(n_clicks, n_submit):
     time.sleep(1)
-    logger.info(f"n_clicks: {n_clicks} n submit: {n_submit}")
     return ""
 
 @app.callback(
@@ -119,13 +118,11 @@ def clear_input(n_clicks, n_submit):
 )
 def run_chatbot(n_clicks, n_submit, user_input, chat_history):
     if n_clicks == 0 and n_submit is None:
-        logger.info("Heiehie")
         return "", None
 
     if user_input is None or user_input == "":
         return chat_history, None
 
-    logger.info(f"User input: {user_input}")
     name = ""
 
     prompt = dedent(
@@ -149,9 +146,8 @@ def run_chatbot(n_clicks, n_submit, user_input, chat_history):
         time.sleep(2)
         model_output = "Wilhelm er .... hva skal jeg si, han er en skikkelig kul fyr"
     else:
-        logger.info("Nå svarer oatmeal ....")
         model_output = chat_med_endpoint(user_input, api_key, url, navn_på_endepunkt)
-        logger.info(f"Model output {model_output}")
+        logger.info(f"Model input: {user_input}, \t Model output: {model_output}")
     chat_history += f"{model_output}<split>"
 
     return chat_history, None
