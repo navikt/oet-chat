@@ -20,7 +20,7 @@ def chat_med_endpoint(question: str, api_key: str, url, navn_på_endepunkt):
     data = {'chat_input': question, 'chat_history': []}
 
     body = str.encode(json.dumps(data))
-
+    logger.info("nå er vi inne i funksjonen")
     # Replace this with the primary/secondary key or AMLToken for the endpoint
     if not api_key:
         raise Exception("A key should be provided to invoke the endpoint")
