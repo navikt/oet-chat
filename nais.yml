@@ -34,4 +34,4 @@ spec:
         - host: data.nav.no
         - host: ml.azure.com
   ingresses:
-    - "https://havregrotten.prod.intern.nav.no"
+    - "https://havregrotten.intern.prod.nav.no"
