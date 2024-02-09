@@ -53,7 +53,7 @@ def textbox(text, box="AI", name="OT ML"):
         style["margin-right"] = "auto"
 
         thumbnail = html.Img(
-            src=app.get_asset_url("emne.png"),
+            src=app.get_asset_url("havregrot.png"),
             style={
                 "border-radius": 50,
                 "height": 85,
