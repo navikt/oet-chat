@@ -9,8 +9,8 @@ from ml_ot_bot import chat_med_endpoint
 
 
 api_key = os.environ["api_key"]
-url = 'https://ot-ml-kategorisering-iterasjon1.swedencentral.inference.ml.azure.com/score'
-#url = os.environ["URL_ENDEPUNKT"]
+#url = 'https://ot-ml-kategorisering-iterasjon1.swedencentral.inference.ml.azure.com/score'
+url = os.environ["URL_ENDEPUNKT"]
 
 navn_på_endepunkt = 'ot-ml-kategorisering-iterasjon1'
 #navn_på_endepunkt = os.environ["NAVN_ENDEPUNKT"]
@@ -48,7 +48,7 @@ def textbox(text, box="AI", name="OT ML"):
         style["margin-right"] = "auto"
 
         thumbnail = html.Img(
-            src=app.get_asset_url("hg.png"),
+            src=app.get_asset_url("havregrot.png"),
             style={
                 "border-radius": 50,
                 "height": 35,
@@ -99,7 +99,7 @@ app.layout = dbc.Container(
 )
 def update_display(chat_history):
     return [
-        textbox(x, box="user") if i % 2 == 0 else textbox(x, box="AI")
+        textbox(x, box="user") if i % 2 != 0 else textbox(x, box="AI")
         for i, x in enumerate(chat_history.split("<split>")[:-1])
     ]
 
@@ -117,8 +117,9 @@ def clear_input(n_clicks, n_submit):
     [State("user-input", "value"), State("store-conversation", "data")],
 )
 def run_chatbot(n_clicks, n_submit, user_input, chat_history):
-    if n_clicks == 0 and n_submit is None:
-        return "", None
+    if n_clicks is None and n_submit is None:
+        chat_history = f"Velkommen til OT-ML hva kan jeg hjelpe deg med? <split> :"
+        return chat_history, None
 
     if user_input is None or user_input == "":
         return chat_history, None
@@ -126,7 +127,7 @@ def run_chatbot(n_clicks, n_submit, user_input, chat_history):
     name = ""
 
     prompt = dedent(
-        f"""
+        f""" 
     """
     )
 
