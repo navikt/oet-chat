@@ -122,11 +122,9 @@ def clear_input(n_clicks, n_submit):
 )
 def run_chatbot(n_clicks, n_submit, user_input, chat_history):
     if n_clicks is None and n_submit is None:
-        chat_history = f"""Hei! Jeg kan hjelpe deg med spørsmål knyttet til: Økonomi,
-        regnskap, reise, lønn, utbetalinger, arbeidstid, permisjon og fravær, 
-        starte og slutte i NAV, lønnsadministrasjon, innkjøp avtaler og ansettelser. 
+        chat_history = f"""Hei! Jeg kan hjelpe deg som medarbeider i NAV med å svare på spørsmål som handler om å jobbe i NAV.
         Jeg lagrer alle spørsmål du stiller til meg slik at jeg kan lære av det. 
-        Derson du chatter med med samtykker du til dette.
+        Dersom du chatter med meg samtykker du til dette. 
 
         Hva kan jeg hjelpe deg med? 
           <split> :"""
@@ -158,6 +156,12 @@ def run_chatbot(n_clicks, n_submit, user_input, chat_history):
     elif "wilhelm" in user_input:
         time.sleep(2)
         model_output = "Wilhelm er .... hva skal jeg si, han er en skikkelig kul fyr"
+    elif "aurora" in user_input.lower():
+        time.sleep(9)
+        model_output = "Aurora er en skikkelig rar fyr, hun er en av de beste jeg vet om. Hun er en skikkelig kul fyr"
+    elif "lars" in user_input.lower():
+        time.sleep(1)
+        model_output = "Lars er ekstremt kul, han er en av de beste jeg vet om. Han er en skikkelig kul fyr"
     else:
         model_output = chat_med_endpoint(user_input, api_key, url, navn_på_endepunkt)
         logger.info(f"Model input: {user_input}, \t Model output: {model_output}")
