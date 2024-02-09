@@ -1,3 +1,4 @@
+
 import os
 import time
 import logging
@@ -9,6 +10,9 @@ from ml_ot_bot import chat_med_endpoint
 
 
 api_key = os.environ["api_key"]
+
+
+
 #url = 'https://ot-ml-kategorisering-iterasjon1.swedencentral.inference.ml.azure.com/score'
 url = os.environ["URL_ENDEPUNKT"]
 
@@ -51,7 +55,7 @@ def textbox(text, box="AI", name="OT ML"):
             src=app.get_asset_url("havregrot.png"),
             style={
                 "border-radius": 50,
-                "height": 35,
+                "height": 85,
                 "margin-right": 5,
                 "float": "left",
             },
@@ -118,7 +122,15 @@ def clear_input(n_clicks, n_submit):
 )
 def run_chatbot(n_clicks, n_submit, user_input, chat_history):
     if n_clicks is None and n_submit is None:
-        chat_history = f"Velkommen til OT-ML hva kan jeg hjelpe deg med? <split> :"
+        chat_history = f"""Hei! Jeg kan hjelpe deg med spørsmål knyttet til: Økonomi,
+        regnskap, reise, lønn, utbetalinger, arbeidstid, permisjon og fravær, 
+        starte og slutte i NAV, lønnsadministrasjon, innkjøp avtaler og ansettelser. 
+        Jeg lagrer alle spørsmål du stiller til meg slik at jeg kan lære av det. 
+        Derson du chatter med med samtykker du til dette.
+
+        Hva kan jeg hjelpe deg med? 
+          <split> :"""
+                     
         return chat_history, None
 
     if user_input is None or user_input == "":
@@ -156,3 +168,5 @@ def run_chatbot(n_clicks, n_submit, user_input, chat_history):
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=8050, dev_tools_ui=False)
+
+# %%
