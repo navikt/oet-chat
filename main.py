@@ -3,6 +3,7 @@ import os
 import time
 import logging
 
+
 from dash import Dash, html, dcc, Output, Input, State
 import dash_bootstrap_components as dbc
 from textwrap import dedent
@@ -16,8 +17,8 @@ api_key = os.environ["api_key"]
 #url = 'https://ot-ml-kategorisering-iterasjon1.swedencentral.inference.ml.azure.com/score'
 url = os.environ["URL_ENDEPUNKT"]
 
-navn_på_endepunkt = 'ot-ml-kategorisering-iterasjon1'
-#navn_på_endepunkt = os.environ["NAVN_ENDEPUNKT"]
+#navn_på_endepunkt = 'ot-ml-kategorisering-iterasjon1'
+navn_på_endepunkt = os.environ["NAVN_ENDEPUNKT"]
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -164,7 +165,7 @@ def run_chatbot(n_clicks, n_submit, user_input, chat_history):
         model_output = "Lars er ekstremt kul, han er en av de beste jeg vet om. Han er en skikkelig kul fyr"
     else:
         model_output = chat_med_endpoint(user_input, api_key, url, navn_på_endepunkt)
-        logger.info(f"Model input: {user_input}, \t Model output: {model_output}")
+        logger.info(f"Model input:{user_input}\nModel output: {model_output}")
     chat_history += f"{model_output}<split>"
 
     return chat_history, None
